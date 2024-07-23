@@ -24,7 +24,7 @@ public class GameState : MonoBehaviour
             {
                 if (_playerInputHandler.OnHoverGameobject() != null)
                 {
-                    _player.moveTo(_playerInputHandler.OnHoverGameobject().transform.position);
+                    _player.RunDijkstra(_playerInputHandler.OnHoverGameobject().transform.position);
 
                 }
             }

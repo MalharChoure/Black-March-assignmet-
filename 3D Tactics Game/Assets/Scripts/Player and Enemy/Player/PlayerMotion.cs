@@ -23,21 +23,32 @@ public class PlayerMotion : MonoBehaviour , IArtificialIntelligence
         
     }
 
+    
     public void InitializeDijkstraAlgo()
     {
-        _pathfinder= new DIjkstraAlgo2D(_gridMaker,10);
+        _pathfinder= new DIjkstraAlgo2D(_gridMaker,10,true);
     }
 
 
     public void OnInitialized(Vector3 pos)
     {
         playerUninitialized=false;
-        transform.position = pos+ new Vector3 (0,height/2,0);
+        transform.position = pos+ new Vector3 (0,height,0);
         InitializeDijkstraAlgo();
     }
 
-    public void moveTo(Vector3 pos)
+/*    public void moveTo(Vector3 pos)
     {
         _movement.EnqueueMovement(_pathfinder.SetStart(new Vector2Int((int)transform.position.x, (int)transform.position.z), new Vector2Int((int)pos.x, (int)pos.z)));
+    }*/
+
+    public void RunDijkstra(Vector3 pos)
+    {
+        _movement.EnqueueMovement(_pathfinder.SetStart(new Vector2Int((int)transform.position.x, (int)transform.position.z), new Vector2Int((int)pos.x, (int)pos.z)));
+    }
+
+    public void StartTurn()
+    {
+        
     }
 }

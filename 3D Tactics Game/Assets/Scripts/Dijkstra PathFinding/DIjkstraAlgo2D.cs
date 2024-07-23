@@ -6,33 +6,68 @@ using UnityEditor.Rendering;
 using UnityEngine;
 using static UnityEditor.PlayerSettings;
 
+/// <summary>
+/// This algorithm is rather close to BFS as we dont have weights assigned to paths because they are all equidistant and is used to pathfind on a 2d grid with four direction manuverability.
+/// </summary>
 public class DIjkstraAlgo2D 
 {
+    /// <summary>
+    /// This forms the basis of the actual grid used by the algorithm to detect non walkable tiles.
+    /// </summary>
     private tiletype[,] _grid;
+    /// <summary>
+    /// Gridsize for reference 
+    /// </summary>
     private int _gridsize;
+    /// <summary>
+    ///holds the start position of the object on the grid
+    /// </summary>
     private Vector2Int _start;
+    /// <summary>
+    /// holds the endpos of the object on the grid
+    /// </summary>
     private Vector2Int _end;
+    /// <summary>
+    /// Queue used to hold the nodes to visit next
+    /// </summary>
     private Queue<cell> _inQueue= new Queue<cell>();
+    /// <summary>
+    /// List holds the nodes that have already been visited. It is useful in backtracking the path after it is found.
+    /// </summary>
     private List<cell> _visited= new List<cell>();
+    /// <summary>
+    /// Boolean used to control start of the algorithm
+    /// </summary>
     private bool _startSearch;
+    /// <summary>
+    /// List that holds the backtracked path once the actual path is found
+    /// </summary>
     private List<Vector2Int> _actualMotion= new List<Vector2Int>();
-    private bool _endedSearch = false;
+    /// <summary>
+    /// Bool used to check whether the algo is being used by player or bot. To stop the bots from invading player space.
+    /// </summary>
+    private bool _player = true;
 
-    private bool player = true;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    public DIjkstraAlgo2D(GridMaker _gridHandler, int size)
+    /// <summary>
+    /// Contructor requires grid, grid size and the player distinction factor
+    /// </summary>
+    /// <param name="_gridHandler"> This grabs the gridhandler instance to access the grid that holds the walkable and unwalkable tiles</param>
+    /// <param name="size"></param>
+    /// <param name="player"></param>
+    public DIjkstraAlgo2D(GridMaker _gridHandler, int size, bool player)
     {
         _gridsize = size;
         _grid = new tiletype[size, size];
         _grid=_gridHandler.getGrid();
+        this._player = player;
     }
 
-
+    /// <summary>
+    /// This function starts the search for the shortest path. It also reinitializes the the queues and list alongside control flags
+    /// </summary>
+    /// <param name="startpos"></param>
+    /// <param name="endpos"></param>
+    /// <returns>The list returned is 2d coordinates x and z and needs to be converted to vector 3</returns>
     public List<Vector2Int> SetStart(Vector2Int startpos, Vector2Int endpos)
     {
         _actualMotion.Clear();
@@ -44,13 +79,16 @@ public class DIjkstraAlgo2D
         _inQueue.Enqueue(temp);
         _startSearch = true;
         _workQueue();
-        if(player)
+        if(_player && _actualMotion.Count!=0)
         {
             _actualMotion.Add(endpos);
         }
         return _actualMotion;
     }
-
+    /// <summary>
+    /// This function takes the neighbours of a visited cell and adds them in the queue. 
+    /// </summary>
+    /// <param name="c"></param>
     private void _addneighbours(cell c)
     {
         
@@ -83,14 +121,16 @@ public class DIjkstraAlgo2D
                 _inQueue.Enqueue(temp);
         }
     }
-
+    /// <summary>
+    /// The function that runs the loop to check whether the element is end node or not
+    /// </summary>
     private void _workQueue()
     {
         while(_inQueue.Count!=0 && _startSearch)
         {
+            //checks for end node found
             if(_inQueue.Peek().pos==_end)
             {
-                _endedSearch = true;
                 _startSearch = false;
                 _backTrack(_inQueue.Peek());
             }
@@ -99,16 +139,25 @@ public class DIjkstraAlgo2D
                 cell temp = new cell();
                 temp= _inQueue.Dequeue();
                 _visited.Add(temp);
-                //_visited.Append(temp);
                 _addneighbours(temp);
             }
         }
     }
+
+    /// <summary>
+    /// This checks whether a tile is walkable
+    /// </summary>
+    /// <param name="pos"></param>
+    /// <returns>Returns true or false</returns>
     private bool _checkWalkable(Vector2Int pos)
     {
         return _grid[pos.x, pos.y] == tiletype.Grass;
     }
 
+    /// <summary>
+    /// This function backtracks the cells in order to form the shortest path and then adds the elements to a list. It also reverses it so that the entity can traverse it.
+    /// </summary>
+    /// <param name="c"></param>
     private void _backTrack(cell c)
     {
         cell temp = c;
@@ -133,6 +182,11 @@ public class DIjkstraAlgo2D
         _actualMotion.Reverse();
     }
 
+    /// <summary>
+    /// Function to seach the queue if an object is already in unvisited queue.
+    /// </summary>
+    /// <param name="c"></param>
+    /// <returns></returns>
     private bool _searchQueue(cell c)
     {
         for(int i=0;i<_inQueue.Count;i++)
@@ -143,6 +197,11 @@ public class DIjkstraAlgo2D
         return false;
     }
 
+    /// <summary>
+    /// Function to check the list whether an element is already visited.
+    /// </summary>
+    /// <param name="c"></param>
+    /// <returns></returns>
     private bool _searchlist(cell c)
     {
         for (int i = 0; i < _visited.Count; i++)
@@ -153,7 +212,9 @@ public class DIjkstraAlgo2D
         return false;
     }
 }
-
+/// <summary>
+/// Class to create cells that allow back traversal using the previous Vector2 position
+/// </summary>
 public class cell
 {
     public Vector2Int pos;

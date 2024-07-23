@@ -4,6 +4,5 @@ using UnityEngine;
 
 public interface IArtificialIntelligence
 {
-    virtual public void RunDijkstra() { }
-    virtual public void StartTurn() { }
+     void RunDijkstra(Vector3 pos);
 }
