@@ -17,6 +17,8 @@ public class DIjkstraAlgo2D
     private bool _startSearch;
     private List<Vector2Int> _actualMotion= new List<Vector2Int>();
     private bool _endedSearch = false;
+
+    private bool player = true;
     // Start is called before the first frame update
     void Start()
     {
@@ -36,11 +38,16 @@ public class DIjkstraAlgo2D
         _actualMotion.Clear();
         _start = startpos;
         _end = endpos;
-    
+        _inQueue = new Queue<cell>();
+        _visited = new List<cell>();
         cell temp = new cell(_start, _checkWalkable(startpos));
         _inQueue.Enqueue(temp);
         _startSearch = true;
         _workQueue();
+        if(player)
+        {
+            _actualMotion.Add(endpos);
+        }
         return _actualMotion;
     }
 
@@ -122,6 +129,7 @@ public class DIjkstraAlgo2D
                 }
             }
         }
+        _actualMotion.RemoveAt(_actualMotion.Count - 1);
         _actualMotion.Reverse();
     }
 
