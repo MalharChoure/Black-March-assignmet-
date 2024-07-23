@@ -12,6 +12,8 @@ public class Movement : MonoBehaviour
     private bool _isMoving=false;
     private Vector3 _destination;
     private Vector3 _startPoint;
+    [SerializeField] private float moveHeight;
+    private bool _start=false;
 
     //[SerializeField]private List<Vector3> testPos;
     // Start is called before the first frame update
@@ -24,7 +26,7 @@ public class Movement : MonoBehaviour
     void Update()
     {
         Debug.Log(_movements.Count);
-        if(_movements.Count!=0 && !_isMoving)
+        if(_movements.Count!=0 && !_isMoving && _start)
         {
             _isMoving = true;
             _destination = _movements.Dequeue();
@@ -45,11 +47,12 @@ public class Movement : MonoBehaviour
         }
     }
 
-    public void EnqueueMovement(List<Vector3> Directions)
+    public void EnqueueMovement(List<Vector2Int> Directions)
     {
         for(int i=0;i<Directions.Count;i++)
         {
-            _movements.Enqueue(Directions[i]);
+            _movements.Enqueue(new Vector3(Directions[i].x,moveHeight, Directions[i].y));
         }
+        _start = true;
     }
 }

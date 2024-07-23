@@ -57,8 +57,8 @@ public class PlayerInputHandler : MonoBehaviour
         if (Physics.Raycast(_ray, out _hit, 100, _interactableObjectMask))
         {
             // Here check the object and call its respective information function
-            _rayCastHitPoint = _hit.point;
+            return _hit.transform.gameObject;
         }
-        return _hit.transform.gameObject;
+        return null;
     }
 }
