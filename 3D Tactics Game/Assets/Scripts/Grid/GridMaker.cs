@@ -92,7 +92,7 @@ public class GridMaker: MonoBehaviour
         {
             for (int j = 0; j <10; j++)
             {
-                _gridSave[_CurrentSave]._grid[i, j] = (int)_grid[i, j];
+                _gridSave[_CurrentSave].val[(i*10)+ j] = (int)_grid[i, j];
             }
         }
         //t.test = true;
@@ -111,7 +111,8 @@ public class GridMaker: MonoBehaviour
         {
             for (int j = 0; j < 10; j++)
             {
-                _grid[i, j] = (tiletype) _gridSave[_CurrentSave]._grid[i, j];
+                _grid[i, j] = (tiletype)_gridSave[_CurrentSave].val[(i * 10) + j];
+                //_grid[i, j] = (tiletype) _gridSave[_CurrentSave]._grid[i, j];
             }
         }
     }
