@@ -97,7 +97,7 @@ public class GridMaker: MonoBehaviour
         }
         //t.test = true;
         //Undo.RecordObject(t, " ");
-        EditorUtility.SetDirty(t);
+        EditorUtility.SetDirty(_gridSave[_CurrentSave]);
         //AssetDatabase.SaveAssets();
         //EditorUtility.SetDirty(_gridSave[_CurrentSave]);
     }
