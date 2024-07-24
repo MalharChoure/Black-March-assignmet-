@@ -1,4 +1,7 @@
 /*
+ * 
+ This project uses 2022.3.11f1
+  
  This is a read me file for clarification
 
 all private variables and functions begin with an underscore 
@@ -9,6 +12,10 @@ any local variable also begins small letter.
  
  */
 
+/*
+ Since my editor and game are two different scenes and scriptable objects cannot be passed through scenes while saving data without using setDirty() which
+is an UnityEditor method. The build of this game does not work.
+ */
 
 /*
 Playing the game:

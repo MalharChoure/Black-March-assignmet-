@@ -97,7 +97,7 @@ public class GridMaker: MonoBehaviour
         }
         //t.test = true;
         //Undo.RecordObject(t, " ");
-        EditorUtility.SetDirty(_gridSave[_CurrentSave]);
+        EditorUtility.SetDirty(_gridSave[_CurrentSave]);// Does not work in build and cannot save scriptable objects across scenes using this can only do that in build.
         //AssetDatabase.SaveAssets();
         //EditorUtility.SetDirty(_gridSave[_CurrentSave]);
     }
