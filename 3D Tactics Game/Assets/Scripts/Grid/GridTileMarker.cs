@@ -2,26 +2,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// This script helps set the marker where the mouse is currently at
+/// </summary>
 public class GridTileMarker : MonoBehaviour
 {
+    /// <summary>
+    /// Creates a handle to the Player Input Handler script.
+    /// </summary>
     [SerializeField] private PlayerInputHandler _input;
+    /// <summary>
+    /// The actual prefab that the spotter uses. It a simple plane with a square hole cutout
+    /// </summary>
     [SerializeField] private GameObject _spotter;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
+
     void Update()
     {
-        OnTileClicked();
-/*        if (Input.GetMouseButtonDown(0))
-        {
-            OnTileClicked();
-        }*/
+        _OnTileClicked();
     }
-    private void OnTileClicked()
+    /// <summary>
+    /// This allows us to set the poisiton of the spotter on the grid whenever the player is hovering on a tile.
+    /// </summary>
+    private void _OnTileClicked()
     {
         Vector3 temp = _input.OnHover();
 

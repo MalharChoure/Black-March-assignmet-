@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+/// <summary>
+/// Handles the player inputs in general.
+/// </summary>
 public class PlayerInputHandler : MonoBehaviour
 {
     /// <summary>
@@ -39,7 +42,7 @@ public class PlayerInputHandler : MonoBehaviour
     public Vector3 OnHover()
     {
         Vector3 currentMousePos = Input.mousePosition;
-        currentMousePos.z = _playerCam.nearClipPlane;
+        currentMousePos.z = _playerCam.nearClipPlane;// This is done to avoid selecting objects camera cant see if its too close.
         _ray = _playerCam.ScreenPointToRay(currentMousePos);
         if(Physics.Raycast(_ray,out _hit,100,_interactableObjectMask))
         {

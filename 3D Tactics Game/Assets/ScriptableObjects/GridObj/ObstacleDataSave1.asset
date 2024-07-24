@@ -12,3 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0d56101fd4c6f64aa473700319fe79b, type: 3}
   m_Name: ObstacleDataSave1
   m_EditorClassIdentifier: 
+  test: 0

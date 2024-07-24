@@ -580,7 +580,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 254752679}
         m_TargetAssemblyTypeName: HomeScreenNav, Assembly-CSharp
-        m_MethodName: _EditScene
+        m_MethodName: EditScene
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -713,7 +713,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 254752679}
         m_TargetAssemblyTypeName: HomeScreenNav, Assembly-CSharp
-        m_MethodName: _exitapplication
+        m_MethodName: exitapplication
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1322,7 +1322,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 254752679}
         m_TargetAssemblyTypeName: HomeScreenNav, Assembly-CSharp
-        m_MethodName: _PlayScene
+        m_MethodName: PlayScene
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

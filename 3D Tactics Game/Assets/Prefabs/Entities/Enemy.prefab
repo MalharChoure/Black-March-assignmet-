@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &8497810526114753044
+--- !u!1 &3392393437897468841
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,48 +8,49 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 3655309495152966712}
-  - component: {fileID: 364992444862683533}
-  - component: {fileID: 4450656012671059500}
-  - component: {fileID: 2022853133907025291}
-  - component: {fileID: -3609754540190802341}
-  m_Layer: 0
-  m_Name: DirtBlock
+  - component: {fileID: 7811011462003561516}
+  - component: {fileID: 5169706015624852614}
+  - component: {fileID: 4679456366882071427}
+  - component: {fileID: 7861529176757512899}
+  - component: {fileID: 1301569338548346256}
+  - component: {fileID: 8724903179807260388}
+  m_Layer: 2
+  m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &3655309495152966712
+--- !u!4 &7811011462003561516
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8497810526114753044}
+  m_GameObject: {fileID: 3392393437897468841}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.5, y: 0.5, z: -0.5}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 263.0774, y: 360.9299, z: -346.39105}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &364992444862683533
+--- !u!33 &5169706015624852614
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8497810526114753044}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &4450656012671059500
+  m_GameObject: {fileID: 3392393437897468841}
+  m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &4679456366882071427
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8497810526114753044}
+  m_GameObject: {fileID: 3392393437897468841}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -63,7 +64,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 8cda621ca6008f2488f71f47c06b1a52, type: 2}
+  - {fileID: 2100000, guid: 5f683a63f449c9648bd61a47d606cd89, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -85,13 +86,13 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &2022853133907025291
-BoxCollider:
+--- !u!136 &7861529176757512899
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8497810526114753044}
+  m_GameObject: {fileID: 3392393437897468841}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -103,19 +104,37 @@ BoxCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &-3609754540190802341
+--- !u!114 &1301569338548346256
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8497810526114753044}
+  m_GameObject: {fileID: 3392393437897468841}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f66c9c486f98baa4a876403f9e137b97, type: 3}
+  m_Script: {fileID: 11500000, guid: cd657e9aaeb4427499547de483fcc626, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _info: A simple dirt block
+  _gridMaker: {fileID: 0}
+  height: 1.5
+  _movement: {fileID: 8724903179807260388}
+--- !u!114 &8724903179807260388
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3392393437897468841}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c78271d074beb547876964c6baff2fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementtime: 0
+  moveHeight: 1.5

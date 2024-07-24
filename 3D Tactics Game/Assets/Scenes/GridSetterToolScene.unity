@@ -4246,6 +4246,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1861813289210198506, guid: 743386f8caa928c498ffe7302a3f0d49, type: 3}
+      propertyPath: t
+      value: 
+      objectReference: {fileID: 11400000, guid: 3ae484a8bf6fa4e48a8a881ede89837c, type: 2}
     - target: {fileID: 9033846671182625934, guid: 743386f8caa928c498ffe7302a3f0d49, type: 3}
       propertyPath: m_Name
       value: GridMaker

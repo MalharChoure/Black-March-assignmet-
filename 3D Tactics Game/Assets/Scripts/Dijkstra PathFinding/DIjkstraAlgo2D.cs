@@ -1,10 +1,9 @@
-using System.Collections;
+
 using System.Collections.Generic;
 using System.Linq;
-using TMPro;
-using UnityEditor.Rendering;
+
 using UnityEngine;
-using static UnityEditor.PlayerSettings;
+
 
 /// <summary>
 /// This algorithm is rather close to BFS as we dont have weights assigned to paths because they are all equidistant and is used to pathfind on a 2d grid with four direction manuverability.
@@ -81,7 +80,7 @@ public class DIjkstraAlgo2D
         _workQueue();
         if(_player && _actualMotion.Count!=0)
         {
-            _actualMotion.Add(endpos);
+        _actualMotion.Add(endpos);
         }
         return _actualMotion;
     }

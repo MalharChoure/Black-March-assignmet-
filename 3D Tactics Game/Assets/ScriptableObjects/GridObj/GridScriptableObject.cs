@@ -7,6 +7,7 @@ public class GridScriptableObject : ScriptableObject
 {
 
     public int[,] _grid= new int[20,20];
+    public bool test = false;
  
 /*
     public void setGrid(tiletype[,] gridTiles)
